@@ -12,6 +12,8 @@ self.addEventListener('install', e => {
   console.log('Service Worker: Installed');
 
   e.waitUntil(
+    // waiting until the following is done
+    // open the cahe,then cache the assets,then skp waiting
     caches
       .open(cacheName)
       .then(cache => {
@@ -25,19 +27,23 @@ self.addEventListener('install', e => {
 // Call Activate Event
 self.addEventListener('activate', e => {
   console.log('Service Worker: Activated');
-//   // Remove unwanted caches
-//   e.waitUntil(
-//     caches.keys().then(cacheNames => {
-//       return Promise.all(
-//         cacheNames.map(cache => {
-//           if (cache !== cacheName) {
-//             console.log('Service Worker: Clearing Old Cache');
-//             return caches.delete(cache);
-//           }
-//         })
-//       );
-//     })
-//   );
+  // Remove unwanted caches
+  e.waitUntil(
+    // wait until the following is done before activating
+    // get all the caches, (this returns promises of cahes)
+    // hence we use promise.all
+    // for each cache, delete unecessary cache
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cache => {
+          if (cache !== cacheName) {
+            console.log('Service Worker: Clearing Old Cache');
+            return caches.delete(cache);
+          }
+        })
+      );
+    })
+  );
 });
 
 // // Call Fetch Event
