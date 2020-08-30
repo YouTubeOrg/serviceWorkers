@@ -7,9 +7,9 @@
 //   '/js/main.js'
 // ];
 
-// // Call Install Event
-// self.addEventListener('install', e => {
-//   console.log('Service Worker: Installed');
+// Call Install Event
+self.addEventListener('install', e => {
+  console.log('Service Worker: Installed');
 
 //   e.waitUntil(
 //     caches
@@ -20,11 +20,11 @@
 //       })
 //       .then(() => self.skipWaiting())
 //   );
-// });
+});
 
-// // Call Activate Event
-// self.addEventListener('activate', e => {
-//   console.log('Service Worker: Activated');
+// Call Activate Event
+self.addEventListener('activate', e => {
+  console.log('Service Worker: Activated');
 //   // Remove unwanted caches
 //   e.waitUntil(
 //     caches.keys().then(cacheNames => {
@@ -38,10 +38,10 @@
 //       );
 //     })
 //   );
-// });
+});
 
 // // Call Fetch Event
 // self.addEventListener('fetch', e => {
 //   console.log('Service Worker: Fetching');
 //   e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));
-// });
+// })
