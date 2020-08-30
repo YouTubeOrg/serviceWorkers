@@ -8,7 +8,7 @@ if (navigator.serviceWorker) { // aliter if navigator.serviceWorker
   // if there's an error,we catch
   window.addEventListener('load', () => {
     navigator.serviceWorker
-      .register('../simple_service_worker/sw_cached_site.js')
+      .register('../simple_service_worker/sw_cached_pages.js')
       .then(reg => console.log('Service Worker: Registered')) 
       .catch(err => console.log(`Service Worker: Error: ${err}`));
   });
