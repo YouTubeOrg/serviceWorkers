@@ -1,9 +1,16 @@
 // Make sure sw are supported
-if ('serviceWorker' in navigator) { // aliter if navigator.serviceWorker
+if (navigator.serviceWorker) { // aliter if navigator.serviceWorker
+  // listen to the load event, 
+  // take the navigator object
+  // then registerthe file
+  // returns a promise
+  // returns a reg object
+  // if there's an error,we catch
   window.addEventListener('load', () => {
     navigator.serviceWorker
-      .register('../sw_cached_pages.js')
-      .then(reg => console.log('Service Worker: Registered (Pages)'))
+      .register('../simple_service_worker/sw_cached_pages.js')
+      .then(reg => console.log('Service Worker: Registered'))
       .catch(err => console.log(`Service Worker: Error: ${err}`));
   });
+  // console.log('worked')
 }
